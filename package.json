@@ -1,0 +1,8 @@
+{
+  "name": "grpahql-fullstack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joo Ka <mr.jooka@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
