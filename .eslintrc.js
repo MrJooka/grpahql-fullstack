@@ -30,6 +30,7 @@ module.exports = {
     ],
     'no-use-before-define': 'off',
     'linebreak-style': 'off',
+    'no-console': 'off',
     camelcase: 'warn',
     'max-classes-per-file': 'off',
     'class-methods-use-this': 'off',
@@ -46,7 +47,10 @@ module.exports = {
     ],
     'no-underscore-dangle': 0,
     // react
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-filename-extension': [
+      2,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
     'react/require-default-props': 0,
     'react/jsx-props-no-spreading': 1,
     'react/jsx-uses-react': 'off',
