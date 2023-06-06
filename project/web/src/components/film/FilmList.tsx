@@ -1,17 +1,7 @@
-import { gql, useQuery } from '@apollo/client';
-
-const FILM_QUERY = gql`
-  query ExampleQuery {
-    films {
-      id
-      title
-      subtitle
-    }
-  }
-`;
+import { useFilmsQuery } from '../../generated/graphql';
 
 export default function FilmList() {
-  const { data, loading, error } = useQuery(FILM_QUERY);
+  const { data, loading, error } = useFilmsQuery();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {JSON.stringify(error)}</p>;
