@@ -17,6 +17,7 @@ export default function FilmList(): JSX.Element {
   return (
     <SimpleGrid columns={[2, null, 3]} spacing={[2, null, 10]}>
       {loading &&
+        // eslint-disable-next-line react/no-array-index-key
         new Array(6).map((x, i) => <Skeleton key={i} height="400px" />)}
       {!loading &&
         data &&

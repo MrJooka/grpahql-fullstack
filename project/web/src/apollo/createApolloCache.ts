@@ -8,7 +8,6 @@ export const createApolloCache = (): InMemoryCache =>
         fields: {
           films: {
             keyArgs: false,
-
             merge: (
               existing: PaginatedFilms | undefined,
               incoming: PaginatedFilms,

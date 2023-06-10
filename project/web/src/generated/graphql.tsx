@@ -3,19 +3,32 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T,
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
+    };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string | number; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
+  ID: { input: string | number; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
 };
 
 export type Director = {
@@ -59,11 +72,9 @@ export type Query = {
   films: PaginatedFilms;
 };
 
-
 export type QueryFilmArgs = {
   filmId: Scalars['Int']['input'];
 };
-
 
 export type QueryFilmsArgs = {
   cursor?: InputMaybe<Scalars['Int']['input']>;
@@ -75,28 +86,42 @@ export type FilmsQueryVariables = Exact<{
   cursor?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
-
-export type FilmsQuery = { __typename?: 'Query', films: { __typename?: 'PaginatedFilms', cursor?: number | null, films: Array<{ __typename?: 'Film', id: number, title: string, subtitle?: string | null, runningTime: number, release: string, posterImg: string, director: { __typename?: 'Director', name: string } }> } };
-
+export type FilmsQuery = {
+  __typename?: 'Query';
+  films: {
+    __typename?: 'PaginatedFilms';
+    cursor?: number | null;
+    films: Array<{
+      __typename?: 'Film';
+      id: number;
+      title: string;
+      subtitle?: string | null;
+      runningTime: number;
+      release: string;
+      posterImg: string;
+      director: { __typename?: 'Director'; name: string };
+    }>;
+  };
+};
 
 export const FilmsDocument = gql`
-    query Films($limit: Int, $cursor: Int) {
-  films(limit: $limit, cursor: $cursor) {
-    cursor
-    films {
-      id
-      title
-      subtitle
-      runningTime
-      director {
-        name
+  query Films($limit: Int, $cursor: Int) {
+    films(limit: $limit, cursor: $cursor) {
+      cursor
+      films {
+        id
+        title
+        subtitle
+        runningTime
+        director {
+          name
+        }
+        release
+        posterImg
       }
-      release
-      posterImg
     }
   }
-}
-    `;
+`;
 
 /**
  * __useFilmsQuery__
@@ -115,14 +140,27 @@ export const FilmsDocument = gql`
  *   },
  * });
  */
-export function useFilmsQuery(baseOptions?: Apollo.QueryHookOptions<FilmsQuery, FilmsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FilmsQuery, FilmsQueryVariables>(FilmsDocument, options);
-      }
-export function useFilmsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FilmsQuery, FilmsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FilmsQuery, FilmsQueryVariables>(FilmsDocument, options);
-        }
+export function useFilmsQuery(
+  baseOptions?: Apollo.QueryHookOptions<FilmsQuery, FilmsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<FilmsQuery, FilmsQueryVariables>(
+    FilmsDocument,
+    options,
+  );
+}
+export function useFilmsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<FilmsQuery, FilmsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<FilmsQuery, FilmsQueryVariables>(
+    FilmsDocument,
+    options,
+  );
+}
 export type FilmsQueryHookResult = ReturnType<typeof useFilmsQuery>;
 export type FilmsLazyQueryHookResult = ReturnType<typeof useFilmsLazyQuery>;
-export type FilmsQueryResult = Apollo.QueryResult<FilmsQuery, FilmsQueryVariables>;
+export type FilmsQueryResult = Apollo.QueryResult<
+  FilmsQuery,
+  FilmsQueryVariables
+>;
