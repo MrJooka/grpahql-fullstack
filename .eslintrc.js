@@ -52,7 +52,7 @@ module.exports = {
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
     'react/require-default-props': 0,
-    'react/jsx-props-no-spreading': 1,
+    'react/jsx-props-no-spreading': 0,
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
@@ -68,18 +68,5 @@ module.exports = {
         extensions: ['.js', '.ts', '.jsx', '.tsx'],
       },
     },
-  },
-
-  'react/function-component-definition': {
-    namedComponents: [
-      'function-declaration',
-      'function-expression',
-      'arrow-function',
-    ],
-    unnamedComponents: [
-      'arrow-function',
-      'function-expression',
-      'function-declaration',
-    ],
   },
 };
