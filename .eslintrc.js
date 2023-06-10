@@ -69,4 +69,17 @@ module.exports = {
       },
     },
   },
+
+  'react/function-component-definition': {
+    namedComponents: [
+      'function-declaration',
+      'function-expression',
+      'arrow-function',
+    ],
+    unnamedComponents: [
+      'arrow-function',
+      'function-expression',
+      'function-declaration',
+    ],
+  },
 };
